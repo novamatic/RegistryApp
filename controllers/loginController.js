@@ -13,6 +13,9 @@ loginForm = (req, res) => {
     User.findOne({email: formUser.email}).then(result => {
         let tempUser = new User(result)
         if (tempUser.comparePassword(formUser.password)) {
+            req.session.alias = tempUser.alias
+            req.session.loggedIn = true
+            req.session.priveleged = tempUser.priveleged
             return res.redirect('/home')
         } else {
             res.status(401).redirect('/')

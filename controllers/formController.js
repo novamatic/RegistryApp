@@ -2,8 +2,9 @@ const { mongoose } = require('./../db/mongoose')
 const { Record } = require('./../models/record')
 
 saveForm = (req, res) => {
+
     let bodyObj = {
-        'alias': "JHo",
+        'alias': req.session.alias,
         'date': req.body.date,
         'project': req.body.project,
         'client': req.body.client,
