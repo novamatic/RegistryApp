@@ -1,0 +1,97 @@
+doctype html
+html(lang='en')
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Witaj użytkowniku!
+    // Bootstrap CSS
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.13/css/all.css', integrity='sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp', crossorigin='anonymous')
+    link(rel='stylesheet', href='css/styles.css')
+    title Hello, world!
+  body.text-center
+    .container-fluid
+      .row.col1
+        nav.navbar.navbar-expand-xl.navbar-light
+          img.mb-4(src='img/empirica-logo.png', alt='', width='250', height='75')
+          #navbarNavAltMarkup.collapse.navbar-collapse
+            .navbar-nav
+              a.nav-item.nav-link(href='dashboard2.html') Rejestracja
+              a.nav-item.nav-link(href='#') Karta pracy
+              a.nav-item.nav-link(href='#')
+                | Analiza 
+                span.sr-only (current)
+              a.btn.btn-info.logoutBtn(href='#')
+                span.glyphicon.glyphicon-log-out.text-right
+                |  Wyloguj
+      .row
+        .col-sm-2
+          | Analizuj czas pracy pracowników! 
+          br
+          br
+          .list-group
+            a.list-group-item.list-group-item-light(href='#')
+              i.fas.fa-calendar-alt
+              |  Miesiące
+            a.list-group-item.list-group-item-light(href='#')
+              i.fas.fa-users
+              |  Pracownicy
+            a.list-group-item.list-group-item-light(href='#')
+              i.fas.fa-tasks
+              |  Projekty
+        .col-sm-10
+          .container-fluid
+            select#clientInput.form-control
+              option(selected='') Wybierz...
+              option Styczeń
+              option Luty
+              option Marzec
+              option Kwiecień
+              option Maj
+              option Czerwiec
+              option Lipiec
+              option Sierpień
+              option Wrzesień
+              option Październik
+              option Listopad
+              option Grudzień
+            table.table.table-hover.table-responsive
+              thead
+                tr
+                  th(scope='col') #
+                  th(scope='col') Data
+                  th(scope='col') Projekt
+                  th(scope='col') Klient
+                  th(scope='col') Typ
+                  th(scope='col') Sprint
+                  th(scope='col') Numer Zadania
+                  th(scope='col') Opis
+                  th(scope='col') Czas
+              tbody
+                tr
+                  th(scope='row') 1
+                  td 04-11-2018
+                  td EFL
+                  td OL
+                  td -
+                  td -
+                  td OL-120
+                  td Testy Jednostkowe
+                  td 3
+                tr
+                  th(scope='row') 2
+                  td 05-11-2018
+                  td EFL
+                  td OL
+                  td -
+                  td -
+                  td OL-131
+                  td Jenkins
+                  td 6
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='js/dashboard.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', crossorigin='anonymous')
