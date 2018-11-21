@@ -1,11 +1,12 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const _ = require('lodash');
 
-let Record = mongoose.model('Record', {
+let RecordSchema = new mongoose.Schema({
     alias: {
         type: String,
         required: true,
         trim: true
-    }, 
+    },
     date: {
         type: Date,
         required: true
@@ -42,8 +43,16 @@ let Record = mongoose.model('Record', {
         type: Number,
         required: true
     }
-
 })
+
+RecordSchema.methods.toJSON = function () {
+    let record = this
+    let recordObject = record.toObject()
+
+    return _.pick(recordObject, ['alias', 'date', 'project', 'client', 'type', 'sprint', 'task', 'description', 'time'])
+}
+
+let Record = mongoose.model('Record', RecordSchema)
 
 module.exports = {
     Record

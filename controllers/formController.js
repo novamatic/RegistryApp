@@ -3,9 +3,12 @@ const { Record } = require('./../models/record')
 
 saveForm = (req, res) => {
 
+    let date = req.body.date
+    date = date.toString()
+
     let bodyObj = {
         'alias': req.session.alias,
-        'date': req.body.date,
+        'date': date,
         'project': req.body.project,
         'client': req.body.client,
         'type': req.body.type,

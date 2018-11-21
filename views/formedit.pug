@@ -1,0 +1,55 @@
+doctype html
+html(lang='en')
+  head
+    // Required meta tags
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Witaj użytkowniku!
+    // Bootstrap CSS
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity='sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', crossorigin='anonymous')
+    link(rel='stylesheet', href='css/styles.css')
+    link(rel='stylesheet', href='css/form.css')
+    title Hello, world!
+  body.text-center
+    .container-fluid
+      .row.col1
+        img.mb-4(src='img/empirica-logo.png', alt='', width='250', height='75')
+        a.btn.btn-info.logoutBtn(href='/logout')
+          span.glyphicon.glyphicon-log-out.text-right
+          |  Wyloguj
+      .row
+        each record in records
+          form.form-signin(action=`/formedit?id=${record._id}` method="POST")
+              .form-row
+                .form-group.col-md-4
+                  label(for='date') Data
+                  input.form-control(type='date', placeholder='Data', name="date", required='')
+                .form-group.col-md-4
+                  label(for='project') Projekt
+                  input.form-control(type='text', placeholder='Projekt', name="project", value=record.project)
+                .form-group.col-md-4
+                  label(for='client') Klient
+                  input.form-control(type='text', placeholder='Klient', name="client", value=record.client)
+              .form-row
+                .form-group.col-md-4
+                  label(for='type') Typ
+                  input.form-control(type='text', placeholder='Typ', name="type", value=record.type)
+                .form-group.col-md-4
+                  label(for='sprint') Sprint
+                  input.form-control(type='text', placeholder='Sprint', name="sprint", value=record.sprint)
+                .form-group.col-md-4
+                  label(for='task') Numer zadania
+                  input.form-control(type='text', placeholder='Numer zadania', name="task", value=record.task, required='')
+              .form-row
+                .form-group.col-md-6
+                  label(for='description') Opis
+                  input.form-control(type='text', placeholder='Opis', name="description", value=record.description, required='')
+                .form-group.col-md-6
+                  label(for='time') Czas pracy
+                  input.form-control(type='text', placeholder='Czas pracy', name="time", value=record.time, required='')
+              button.btn.btn-success.a-btn-slide-text(type="submit") Zapisz
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', integrity='sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', crossorigin='anonymous')
