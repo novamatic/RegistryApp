@@ -66,6 +66,19 @@ html(lang='en')
                 each project in projects
                   option(value=project.project)=project.project
             button.btn.btn-success.a-btn-slide-text(type="submit") Filtruj
+          br
+          br
+          p Powiadom pracownika, aby uzupełnił godziny pracy
+          form.list-group.form-signin(action='/mail' method="POST")
+            a.list-group-item.list-group-item-light
+              i.far.fa-envelope
+              |  Pracownicy
+              br
+              select.form-control(name="mail")
+                option(value='-') Wybierz pracownika...
+                each user in users
+                  option(value=user.alias)=user.alias
+            button.btn.btn-success.a-btn-slide-text(type="submit") Powiadom
         .col-sm-10
           .container-fluid
             table.table.table-hover.table-responsive

@@ -10,7 +10,6 @@ homeControl = (req, res) => {
     }
     Record.find({alias: req.session.alias}).select('-__v').sort([['date', 'asc']]).then(result => {
         res.render('home', {records: result})
-        //console.log(result)
     }).catch( err => {
         console.log(err)
     })

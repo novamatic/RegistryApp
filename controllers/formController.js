@@ -1,9 +1,16 @@
 const { mongoose } = require('./../db/mongoose')
 const { Record } = require('./../models/record')
 
+formControl = (req, res) => {
+    if (!req.session.loggedIn) {
+        return res.redirect('/')
+    }
+    res.render('form');
+}
+
 saveForm = (req, res) => {
     let month = new Date(req.body.date).getMonth()
-    console.log(month)
+
     let bodyObj = {
         'alias': req.session.alias,
         'date': req.body.date,
@@ -26,5 +33,6 @@ saveForm = (req, res) => {
 }
 
 module.exports = {
-    saveForm
+    saveForm, 
+    formControl
 }

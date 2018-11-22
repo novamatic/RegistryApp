@@ -4,6 +4,13 @@ const { app } = require('./../app');
 const { mongoose } = require('./../db/mongoose')
 const { User } = require('./../models/user')
 
+loginControl = (req, res) => {
+    if (req.session.loggedIn) {
+        return res.redirect('/home')
+    }
+    res.render('login');
+}
+
 loginForm = (req, res) => {
     let formUser = {
         'email': req.body.email,
@@ -26,5 +33,6 @@ loginForm = (req, res) => {
 }
 
 module.exports = {
-    loginForm
+    loginForm,
+    loginControl
 }

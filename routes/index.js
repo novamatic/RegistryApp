@@ -6,34 +6,16 @@ const homeController = require('./../controllers/homeController')
 const formDeleteController = require('./../controllers/formDeleteController');
 const formEditController = require('./../controllers/formEditController');
 const analyseController = require('./../controllers/analyseController');
+const mailController = require('./../controllers/mailController');
+const logoutController = require('./../controllers/logoutController');
 
-router.get('/', (req, res) => {
-    if (req.session.loggedIn) {
-        return res.redirect('/home')
-    }
-    res.render('login');
-});
+router.get('/', loginController.loginControl);
 
-router.get('/logout', (req, res, next) => {
-    if (req.session) {
-        req.session.destroy(err => {
-          if(err) {
-            return next(err);
-          } else {
-            return res.redirect('/');
-          }
-        });
-    }
-});
+router.get('/logout', logoutController.logoutControl);
 
 router.get('/home', homeController.homeControl)
 
-router.get('/form', (req, res) => {
-    if (!req.session.loggedIn) {
-        return res.redirect('/')
-    }
-    res.render('form');
-});
+router.get('/form', formController.formControl);
 
 router.get('/formd', formDeleteController.deleteControl)
 
@@ -42,6 +24,8 @@ router.get('/forme', formEditController.editControl)
 router.get('/analysis', analyseController.analyseController)
 
 router.post('/analysis', analyseController.analyseTable)
+
+router.post('/mail', mailController.mailControl)
 
 router.post('/form', formController.saveForm)
 
