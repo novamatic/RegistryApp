@@ -27,9 +27,12 @@ updateForm = (req, res) => {
         res.status(400).send(e)
     })
 
+    let month = new Date(req.body.date).getMonth()
+
     let bodyObj = {
         'alias': req.session.alias,
         'date': req.body.date,
+        'month': month,
         'project': req.body.project,
         'client': req.body.client,
         'type': req.body.type,

@@ -8,8 +8,11 @@ let RecordSchema = new mongoose.Schema({
         trim: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
+    },
+    month: {
+        type: Number
     },
     project: {
         type: String,

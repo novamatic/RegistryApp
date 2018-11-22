@@ -5,6 +5,7 @@ const loginController = require('./../controllers/loginController')
 const homeController = require('./../controllers/homeController')
 const formDeleteController = require('./../controllers/formDeleteController');
 const formEditController = require('./../controllers/formEditController');
+const analyseController = require('./../controllers/analyseController');
 
 router.get('/', (req, res) => {
     if (req.session.loggedIn) {
@@ -38,15 +39,9 @@ router.get('/formd', formDeleteController.deleteControl)
 
 router.get('/forme', formEditController.editControl)
 
-router.get('/analysis', (req, res) => {
-    if (!req.session.loggedIn) {
-        return res.redirect('/')
-    }
-    if (!req.session.priveleged) {
-        return res.redirect('/home')
-    }
-    res.render('analysis');
-});
+router.get('/analysis', analyseController.analyseController)
+
+router.post('/analysis', analyseController.analyseTable)
 
 router.post('/form', formController.saveForm)
 

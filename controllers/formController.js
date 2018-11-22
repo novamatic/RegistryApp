@@ -2,13 +2,12 @@ const { mongoose } = require('./../db/mongoose')
 const { Record } = require('./../models/record')
 
 saveForm = (req, res) => {
-
-    let date = req.body.date
-    date = date.toString()
-
+    let month = new Date(req.body.date).getMonth()
+    console.log(month)
     let bodyObj = {
         'alias': req.session.alias,
-        'date': date,
+        'date': req.body.date,
+        'month': month,
         'project': req.body.project,
         'client': req.body.client,
         'type': req.body.type,

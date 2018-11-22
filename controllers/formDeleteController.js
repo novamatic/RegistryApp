@@ -10,7 +10,6 @@ deleteControl = (req, res) => {
     }
 
     Record.remove({_id: req.query.id}).then(result => {
-        console.log(result)
         res.redirect('/home')
     }).catch( err => {
         console.log(err)

@@ -30,65 +30,68 @@ html(lang='en')
           | Analizuj czas pracy pracowników! 
           br
           br
-          .list-group
-            a.list-group-item.list-group-item-light(href='#')
+          form.list-group.form-signin(action='/analysis' method="POST")
+            a.list-group-item.list-group-item-light
               i.fas.fa-calendar-alt
               |  Miesiące
-            a.list-group-item.list-group-item-light(href='#')
+              br
+              select.form-control(name="month")
+                option(value='-') Wybierz miesiąc...
+                option(value=0) Styczeń
+                option(value=1) Luty
+                option(value=2) Marzec
+                option(value=3) Kwiecień
+                option(value=4) Maj
+                option(value=5) Czerwiec
+                option(value=6) Lipiec
+                option(value=7) Sierpień
+                option(value=8) Wrzesień
+                option(value=9) Październik
+                option(value=10) Listopad
+                option(value=11) Grudzień
+            a.list-group-item.list-group-item-light
               i.fas.fa-users
               |  Pracownicy
-            a.list-group-item.list-group-item-light(href='#')
+              br
+              select.form-control(name="user")
+                option(value='-') Wybierz pracownika...
+                each user in users
+                  option(value=user.alias)=user.alias
+            a.list-group-item.list-group-item-light
               i.fas.fa-tasks
               |  Projekty
+              br
+              select.form-control(name="project")
+                option(value='-') Wybierz projekt...
+                each project in projects
+                  option(value=project.project)=project.project
+            button.btn.btn-success.a-btn-slide-text(type="submit") Filtruj
         .col-sm-10
           .container-fluid
-            select#clientInput.form-control
-              option(selected='') Wybierz...
-              option Styczeń
-              option Luty
-              option Marzec
-              option Kwiecień
-              option Maj
-              option Czerwiec
-              option Lipiec
-              option Sierpień
-              option Wrzesień
-              option Październik
-              option Listopad
-              option Grudzień
             table.table.table-hover.table-responsive
               thead
                 tr
-                  th(scope='col') #
+                  th(scope='col') Pracownik
                   th(scope='col') Data
                   th(scope='col') Projekt
                   th(scope='col') Klient
                   th(scope='col') Typ
                   th(scope='col') Sprint
                   th(scope='col') Numer Zadania
-                  th(scope='col') Opis
+                  th(scope='col') Opis  
                   th(scope='col') Czas
               tbody
-                tr
-                  th(scope='row') 1
-                  td 04-11-2018
-                  td EFL
-                  td OL
-                  td -
-                  td -
-                  td OL-120
-                  td Testy Jednostkowe
-                  td 3
-                tr
-                  th(scope='row') 2
-                  td 05-11-2018
-                  td EFL
-                  td OL
-                  td -
-                  td -
-                  td OL-131
-                  td Jenkins
-                  td 6
+                each record in records
+                  tr
+                    td=record.alias
+                    td=record.date
+                    td=record.project
+                    td=record.client
+                    td=record.type
+                    td=record.sprint
+                    td=record.task
+                    td=record.description
+                    td=record.time
     // Optional JavaScript
     // jQuery first, then Popper.js, then Bootstrap JS
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
