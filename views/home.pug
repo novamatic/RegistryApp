@@ -29,6 +29,7 @@ html(lang='en')
           | Witaj w aplikacji do rejestrowania czasu pracy!
         .col-sm-10
           .container-fluid
+          - let hours = 0
             table.table.table-hover.table-responsive
               thead
                 tr
@@ -51,6 +52,7 @@ html(lang='en')
                     td=record.task
                     td=record.description
                     td=record.time
+                    - hours = hours + record.time
                     td
                       a.btn.btn-warning.a-btn-slide-text(href="/forme?id=" + record._id)
                         span.glyphicon.glyphicon-edit(aria-hidden='true')
@@ -62,6 +64,9 @@ html(lang='en')
                         span
                           strong Delete
               tfoot
+                tr
+                  td(colspan='2', style='text-align: center;')
+                    p Łączna liczba godzin to #{hours}
                 tr
                   td(colspan='2', style='text-align: center;')
                     a.btn.btn-success.a-btn-slide-text(href='/form')

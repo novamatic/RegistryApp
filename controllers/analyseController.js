@@ -43,8 +43,9 @@ analyseTable = (req, res) => {
             let month = req.body.month
             let user = req.body.user
             let project = req.body.project
+            let sprint = req.body.sprint
 
-            if(month=='-') {
+            if (month == '-') {
                 if (user == '-') {
                     if (project == '-') {
                         Record.find().select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
@@ -53,55 +54,87 @@ analyseTable = (req, res) => {
                             console.log(err)
                         })
                     } else {
-                        Record.find({project: req.body.project}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
-                            return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
-                        }).catch(err => {
-                            console.log(err)
-                        })
+                        if (sprint == '') {
+                            Record.find({ project: req.body.project }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        } else {
+                            Record.find({ project: req.body.project, sprint: sprint }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        }
                     }
                 } else {
                     if (project == '-') {
-                        Record.find({alias: req.body.user}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                        Record.find({ alias: req.body.user }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
                             return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
                         }).catch(err => {
                             console.log(err)
                         })
                     } else {
-                        Record.find({alias: req.body.user, project: req.body.project}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
-                            return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
-                        }).catch(err => {
-                            console.log(err)
-                        })
+                        if (sprint == '') {
+                            Record.find({ alias: req.body.user, project: req.body.project }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        } else {
+                            Record.find({ alias: req.body.user, project: req.body.project, sprint: sprint }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        }
                     }
                 }
             } else {
                 if (user == '-') {
                     if (project == '-') {
-                        Record.find({month: req.body.month}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                        Record.find({ month: req.body.month }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
                             return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
                         }).catch(err => {
                             console.log(err)
                         })
                     } else {
-                        Record.find({month: req.body.month, project: req.body.project}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
-                            return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
-                        }).catch(err => {
-                            console.log(err)
-                        })
+                        if (sprint == '') {
+                            Record.find({ month: req.body.month, project: req.body.project }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        } else {
+                            Record.find({ month: req.body.month, project: req.body.project, sprint: sprint }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        }
                     }
                 } else {
                     if (project == '-') {
-                        Record.find({month: req.body.month, alias: req.body.user}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                        Record.find({ month: req.body.month, alias: req.body.user }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
                             return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
                         }).catch(err => {
                             console.log(err)
                         })
                     } else {
-                        Record.find({month: req.body.month, alias: req.body.user, project: req.body.project}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
-                            return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
-                        }).catch(err => {
-                            console.log(err)
-                        })
+                        if (sprint == '') {
+                            Record.find({ month: req.body.month, alias: req.body.user, project: req.body.project }).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        } else {
+                            Record.find({ month: req.body.month, alias: req.body.user, project: req.body.project , sprint: sprint}).select('-_id -__v').sort([['date', 'asc']]).then(function (recordResult) {
+                                return res.render('analysis', { users: userResult, projects: projectResult, records: recordResult })
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        }
                     }
                 }
             }
